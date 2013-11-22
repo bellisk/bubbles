@@ -19,9 +19,9 @@ THRESHOLDS = (
 )
 
 class Profile(models.Model):
-    user = models.ForeignKey(User, related_name="profiles")
-    reminder_interval = models.IntegerField(choices=INTERVALS)
-    reminder_threshold = models.IntegerField(choices=THRESHOLDS)
+    user = models.OneToOneField(User, related_name="profile")
+    reminder_interval = models.IntegerField(choices=INTERVALS, default=7)
+    reminder_threshold = models.IntegerField(choices=THRESHOLDS, default=5)
     def __unicode__(self):
         return self.user.username
 
